@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+{% block title %}Update Car! {% endblock %}
+{% block link %} <button onclick="location.href = '/dashboard';">Dashboard</button>{% endblock %}
+{% block header %}
+Edit {{car.model}}
+{% endblock %}
+{% block content %}
+<form class="row pt-3" action="/process" method="post">
+    {% with messages = get_flashed_messages(category_filter=['new_car']) %}
+        {% if messages %}
+            {% for message in messages %}
+            <p class="text-danger">{{message}}</p>
+            {% endfor %}
+        {% endif %}
+    {% endwith %}
+    <input type="hidden" name="type" value="edit_car">
+    <input type="hidden" name="car_id" value={{car.id}}>
+    <div class="col-8">
+        <label class='col-10 mb-3' for="price">Price:</label>
+        <input class='col-3 mb-3 text-center' type="number" name="price" value={{car.price}} required>
+        <label class='col-10 mb-3' for="model">Model:</label>
+        <input class='col-5 mb-3' type="text" name="model" value={{car.model}}>
+        <label class='col-10 mb-3' for="make">Make:</label>
+        <input class='col-5 mb-3' type="text" name="make" value={{car.make}}>
+        <label class='col-10 mb-3' for="year">Year:</label>
+        <input class='col-3 mb-3 text-center' type="number" name="year" value={{car.year}}  required>
+        <label class='col-10 mb-3 align-top' for="description">Description:</label>
+        <textarea class='col-6 mb-3' name="description" rows="3">{{car.description}}</textarea>
+        <div class="col-5"></div>
+        <input class="col-2 px-2" type="submit" value="Update">
+    </div>
+</form>
+{% endblock %}

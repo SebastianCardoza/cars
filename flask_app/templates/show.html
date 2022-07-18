@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+{% block title %} {{car.model}} {% endblock %}
+{% block link %} <button onclick="location.href = '/dashboard';">Dashboard</button>{% endblock %}
+{% block content %}
+<div class="d-flex justify-content-center">
+    <div class="col-6 row border rounded border-dark p-2">
+        <h2 class="col-8">$ {{car.price}}</h2> 
+        <p class="col-9">Model: {{car.model}}</p>
+        <p class="col-9">Make: {{car.make}}</p>
+        <p class="col-9">Year: {{car.year}}</p>
+        <p class="col-4 mb-3">Description:</p>
+        <p class="col-9">{{car.description}}</p>
+        <p class="col-9 font-weight-light" style="font-size: 14px;">Seller: {{car.seller.first_name}}</p>
+        <div class="col-3 justify-content-end">
+            <button onclick="location.href = '/purchase/{{car.id}}';">Purchase</button>
+        </div>
+    </div>
+</div>
+{% endblock %}

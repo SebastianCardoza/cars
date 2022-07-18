@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+{% block title %} Cars {% endblock %}
+{% block header %} Welcome to Car Dealz, {{user.first_name}}!! {% endblock %}
+{% block link %} <button onclick="location.href = '/user/{{user.id}}';">Purchases</button>{% endblock %}
+{% block content %}
+<h3>Cars for Sale</h3>
+<table class='col-8'>
+    <thead>
+        <th class="pe-2">Model:</th>
+        <th class="pe-2">Year:</th>
+        <th class="pe-2">Seller:</th>
+        <th class="pe-2">Actions:</th>
+    </thead>
+    <tbody>
+        {% for car in cars %}
+        <tr>
+            <td class="pe-2">{{car.model}}</td>
+            <td class="pe-2">{{car.year}}</td>
+            <td class="pe-2">{{car.seller.first_name}}</td>
+            <td>
+                {% if car.buyer_id != None  %}
+                <span>SOLD</span>
+                {% elif user.id != car.seller_id %}
+                <a href="/show/{{car.id}}">View Car</a>
+                {% elif user.id == car.seller_id %}
+                <a href="/edit/{{car.id}}">Edit</a>
+                <span> | </span><a href="/delete/{{car.id}}">Delete</a>
+                {% endif %}
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+<div class="mt-3 col-8 d-flex justify-content-end">
+    <button onclick="location.href = '/new';">Add a Car</button>
+</div>
+
+{% endblock %}

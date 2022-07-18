@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+{% block title %}New Car! {% endblock %}
+{% block link %} <button onclick="location.href = '/dashboard';">Dashboard</button>{% endblock %}
+{% block header %}
+Put Car Up For Sale!
+{% endblock %}
+{% block content %}
+<form class="row pt-3" action="/process" method="post">
+    {% with messages = get_flashed_messages(category_filter=['new_car']) %}
+        {% if messages %}
+            {% for message in messages %}
+            <p class="text-danger">{{message}}</p>
+            {% endfor %}
+        {% endif %}
+    {% endwith %}
+    <input type="hidden" name="type" value="new_car">
+    <input type="hidden" name="seller_id" value={{user.id}}>
+    <div class="col-8">
+        <label class='col-10 mb-3' for="price">Price:</label>
+        <input class='col-3 mb-3 text-center' type="number" name="price" required>
+        <label class='col-10 mb-3' for="model">Model:</label>
+        <input class='col-5 mb-3' type="text" name="model">
+        <label class='col-10 mb-3' for="make">Make:</label>
+        <input class='col-5 mb-3' type="text" name="make">
+        <label class='col-10 mb-3' for="year">Year:</label>
+        <input class='col-3 mb-3' type="number" name="year" required>
+        <label class='col-10 mb-3 align-top text-center' for="description">Description:</label>
+        <textarea class='col-6 mb-3' name="description" rows="3"></textarea>
+        <div class="col-5"></div>
+        <input class="col-2 px-2" type="submit" value="Add">
+    </div>
+</form>
+{% endblock %}

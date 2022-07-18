@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% block title %} Purchases {% endblock %}
+{% block header %} {{user.first_name}}'s Purchases!! {% endblock %}
+{% block link %} <button onclick="location.href = '/dashboard';">Dashboard</button>{% endblock %}
+{% block content %}
+<table class='col-8'>
+    <thead>
+        <th class="pe-2">Make:</th>
+        <th class="pe-2">Model:</th>
+        <th class="pe-2">Year:</th>
+    </thead>
+    <tbody>
+        {% for car in cars %}
+        <tr>
+            <td class="pe-2">{{car.make}}</td>
+            <td class="pe-2">{{car.model}}</td>
+            <td class="pe-2">{{car.year}}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+{% endblock %}

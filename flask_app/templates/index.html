@@ -1,0 +1,57 @@
+{% extends 'base.html' %}
+{% block title %}Index{% endblock %}
+{% block content %}
+<div class="row">
+    <div class="col-6">
+        <h3 class="my-3">Register</h3>
+        <form class="row" action="/process" method="post">
+            {% with messages = get_flashed_messages(category_filter=['register']) %}
+                {% if messages %}
+                    {% for message in messages %}
+                    <p class="text-danger">{{message}}</p>
+                    {% endfor %}
+                {% endif %}
+            {% endwith %}
+            <input type="hidden" name="type" value="register">
+            <label class='col-4 mb-4' for="first_name">First Name:</label>
+            <input class='col-5 ms-2 mb-4' type="text" name="first_name">
+            <div class="col-2"></div>
+            <label class='col-4 mb-4' for="last_name">Last Name:</label>    
+            <input class='col-5 ms-2 mb-4' type="text" name="last_name">
+            <div class="col-2"></div>
+            <label class='col-4 mb-4' for="email">Email:</label>
+            <input class='col-5 ms-2 mb-4' type="text" name="email">
+            <div class="col-2"></div>
+            <label class='col-4 mb-4' for="password">Password:</label>
+            <input class='col-5 ms-2 mb-4' type="password" name="password">
+            <div class="col-2"></div>
+            <label class='col-4 mb-4' for="confirm_password">Confirm Password:</label>
+            <input class='col-5 ms-2 mb-4' type="password" name="confirm_password">
+            <div class="col-9 d-flex ps-4 pe-0 justify-content-end">
+                <input class="px-2" type="submit" value="Submit">
+            </div>
+        </form>
+    </div>
+    <div class="col-6">
+        <h3 class="my-3">Login</h3>
+        <form class="row" action="/process" method="post">
+            {% with messages = get_flashed_messages(category_filter=['login']) %}
+                {% if messages %}
+                    {% for message in messages %}
+                    <p class="text-danger">{{message}}</p>
+                    {% endfor %}
+                {% endif %}
+            {% endwith %}
+            <input type="hidden" name="type" value="login">
+            <label class='col-4 mb-4' for="email">Email:</label>
+            <input class='col-5 ms-2 mb-4' type="text" name="email">
+            <div class="col-2"></div>
+            <label class='col-4 mb-4' for="password">Password:</label>    
+            <input class='col-5 ms-2 mb-4' type="password" name="password">
+            <div class="col-9 d-flex ps-4 pe-0 justify-content-end">
+                <input class="px-2" type="submit" value="Submit">
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}
